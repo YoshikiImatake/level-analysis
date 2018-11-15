@@ -11,4 +11,4 @@ while True:
 		break
 
 a1 = Analyzer.Analyzer(full_text, False)
-a1.sentence_length(full_text)
+a1.sentence_length()
