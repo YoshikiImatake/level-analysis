@@ -1,4 +1,4 @@
-import Analyzer
+import McbAnalyzer
 
 pos_freq = {} #各品詞の出現数を記録する辞書
 while True:
@@ -14,6 +14,5 @@ while True:
     except EOFError:
         break
 
-for pos in pos_freq:
-    freq = pos_freq[pos]
-    print(f"{pos}:{freq}")
+a1 = McbAnalyzer.McbAnalyzer(pos_freq)
+a1.pos_rate()
