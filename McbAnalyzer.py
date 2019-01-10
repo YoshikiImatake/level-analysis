@@ -1,4 +1,6 @@
+# coding: UTF-8
 import re
+
 class McbAnalyzer:
     def __init__(self, datalist):
         self.hyoso = datalist[0]
@@ -35,9 +37,16 @@ class McbAnalyzer:
         #特定の品詞の割合を出したいが、文字コードの都合か"動詞"をキーとして認識してくれない
 
     def kanji_rate(self): #漢語の割合を出力する
+        wordcount = 0 #総語数を数える変数
+        kanjicount = 0 #漢字のみの語数を数える変数
         for word in self.hyoso:
-            if re.match('[亜-熙ぁ-んァ-ヶ]+', word):
-                print(word)
+            wordcount += 1
+            if re.match('[一-龥]', word) and not re.search('[あ-ん]', word):
+                kanjicount += 1
+        kanjirate = kanjicount / wordcount
+        print("漢字のみの単語の割合", ":", kanjirate)
+           
+
 
 
 
