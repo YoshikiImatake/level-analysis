@@ -14,8 +14,8 @@ class McbAnalyzer:
 
     def pos_rate(self): #各品詞の出現割合を出力する
         pos_freq = dict()
-        for word in self.hinshi:
-            pos_freq[word] = pos_freq.get(word, 0) + 1
+        for pos in self.hinshi:
+            pos_freq[pos] = pos_freq.get(pos, 0) + 1
             #元の形はpos_freq[b[0]] = pos_freq.get(b[0], 0) + 1
             #該当する品詞の出現数（デフォルト値０）に１を足す。
 
