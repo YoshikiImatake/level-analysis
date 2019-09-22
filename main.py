@@ -1,10 +1,13 @@
 import os, McbReader, McbAnalyzer
 import pandas as pd
 import numpy as np
+"""
+以下のライブラリはここでは利用しない
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
+"""
 stu_dir = 'mcb_text/student_mcb/'
 rev_dir = 'mcb_text/reviewed_mcb/'
 label = "length,kanji rate,verb rate,conjunction rate,type" + "\n"

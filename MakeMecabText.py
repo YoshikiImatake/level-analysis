@@ -20,6 +20,7 @@ os.makedirs(newdir_stu)
 os.makedirs(newdir_rev)
 
 #studentディレクトリのMeCab化
+"""
 for filename_stu in files_stu:
     path = dir_stu + filename_stu
     path_mcb = newdir_stu + filename_stu.replace('.txt', '_mcb.txt')
@@ -27,7 +28,7 @@ for filename_stu in files_stu:
         with open(path_mcb, mode='w', encoding='utf-8') as file_mcb:
             for row in file:
                 file_mcb.write(m.parse (row))
-                
+"""                
 #reviewedディレクトリのMeCab化
 for filename_rev in files_rev:
     path = dir_rev + filename_rev
