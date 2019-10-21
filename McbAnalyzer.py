@@ -12,7 +12,38 @@ class McbAnalyzer:
         self.sentence = datalist[6]
         self.total = datalist[7]
 
-    def pos_rate(self): #各品詞の出現割合を出力する
+    def freq(self):
+        """
+        動詞、接続詞、受動態の頻度を出力する
+        """
+        pos_freq = dict()
+        for pos in self.hinshi:
+            pos_freq[pos] = pos_freq.get(pos, 0) + 1
+            #該当する品詞の出現数（デフォルト値０）に１を足す。
+        try:
+            verb = pos_freq["動詞"]
+        except KeyError:
+            verb = 0
+        try:
+            particle = pos_freq["助詞"]
+        except KeyError:
+            particle = 0
+        try:
+            conjunction = pos_freq["接続詞"]
+        except KeyError:
+            conjunction = 0
+        passive = 0
+        for word in self.kihon:
+            if word == "れる" or word == "られる":
+                passive += 1
+        
+        return verb, particle, conjunction, passive
+
+
+    def pos_rate(self):
+        """
+        各品詞(動詞、接続詞、動詞に対する受動態)の出現割合を出力する
+        """
         pos_freq = dict()
         for pos in self.hinshi:
             pos_freq[pos] = pos_freq.get(pos, 0) + 1
@@ -46,7 +77,10 @@ class McbAnalyzer:
         
         #特定の品詞の割合を出したいが、文字コードの都合か"動詞"をキーとして認識してくれない→Anacondaで実行すると解決
 
-    def kanji_rate(self): #漢語の割合を出力する
+    def kanji_rate(self):
+        """
+        漢字のみの単語の割合を出力する
+        """
         wordcount = 0 #総語数を数える変数
         kanjicount = 0 #漢字のみの語数を数える変数
         for word in self.hyoso:

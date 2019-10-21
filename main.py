@@ -8,15 +8,20 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 """
-stu_dir = 'mcb_text/student_mcb/'
-rev_dir = 'mcb_text/reviewed_mcb/'
+stu_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/mcb_text/student_mcb/'
+rev_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/mcb_text/reviewed_mcb/'
 label = "length,kanji rate,verb rate,conjunction rate,type" + "\n"
-datafile = 'data/data.csv'
+datafile = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/data/data.csv'
 f = open(datafile, 'w')
 f.write(label)
 f.close()
 
 def make_data(dirname):
+    """
+    ディレクトリ名(stu_dirかrev_dir)を受け取って
+    データをcsvファイルにして返す
+    中身：1文中の平均字数, 漢字の割合, 動詞の割合, 接続詞？の割合
+    """
     files = os.listdir(dirname)
     if dirname == stu_dir:
             sr = 'student' #'sr'=「studentかreveiwedか」

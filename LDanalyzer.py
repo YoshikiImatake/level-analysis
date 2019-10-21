@@ -1,8 +1,8 @@
 import Levenshtein, os, sentenceMatch
 
-stu_dir = 'text/student/'
-rev_dir = 'text/reviewed/'
-result = "data/Levenshtein_data.csv"
+stu_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/student/'
+rev_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/reviewed/'
+result = "C:/Users/Yoshiki/OneDrive/translation-analysis-data/data/Levenshtein_data.csv"
 label = "Title, Levenshtein Distance\n"
 
 
@@ -13,8 +13,8 @@ f.write(label)
 
 for sfile in sfiles:
     num = sfile.replace('_stu.txt','')
-    sfile = 'text/student/' + sfile
-    rfile = 'text/reviewed/'+ num + '_rev.txt'
+    sfile = stu_dir + sfile
+    rfile = rev_dir + num + '_rev.txt'
     s = sentenceMatch.read(sfile)
     r = sentenceMatch.read(rfile)
     if s == "TooLong" or r == "TooLong":
@@ -28,6 +28,8 @@ for sfile in sfiles:
         ave = sum / len(m)
         title_result = "{0},{1}\n".format(num, ave)
         f.write(title_result)
+
+f.close()
 
     
     

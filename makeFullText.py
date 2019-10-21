@@ -3,9 +3,9 @@ import os, sys, shutil, codecs
 #AnacondaPromptで実行すること
 #学生の下訳と校閲済みの訳文をそれぞれ1つのファイルに統合する
 
-newdir = 'full_text/'
-dir_stu = 'text/student/'
-dir_rev = 'text/reviewed/'
+newdir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/full_text/'
+dir_stu = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/student/'
+dir_rev = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/reviewed/'
 files_stu = os.listdir(dir_stu)
 files_rev = os.listdir(dir_rev)
 
