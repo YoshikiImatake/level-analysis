@@ -1,8 +1,8 @@
 import Levenshtein, os, sentenceMatch
 
-stu_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/student/'
-rev_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/reviewed/'
-result = "C:/Users/Yoshiki/OneDrive/translation-analysis-data/data/Levenshtein_data.csv"
+stu_dir = 'text4ld/student_4/'
+rev_dir = 'text4ld/reviewed_4/'
+result = "data/Levenshtein_data_4.csv"
 label = "Title, Levenshtein Distance\n"
 
 

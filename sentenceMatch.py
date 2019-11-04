@@ -17,6 +17,7 @@ def match(s, t):
             for tsen in t:
                 tsen = tsen.replace("\n","")
                 ldresult = Levenshtein.lds(ssen,tsen)
+                Levenshtein.ld.cache_clear()
                 ld.append(ldresult)
                 lddict[ldresult] = (ssen, tsen)
             u = lddict[min(ld)],min(ld)
@@ -40,6 +41,7 @@ def read(path):
     return s
 
 def main():
+    '''テスト用'''
     stxt = read('text/student/20160406_stu.txt')
     rtxt = read('text/reviewed/20160406_rev.txt')
     print(stxt, '\n')

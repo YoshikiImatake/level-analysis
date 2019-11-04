@@ -49,12 +49,7 @@ class McbAnalyzer:
             pos_freq[pos] = pos_freq.get(pos, 0) + 1
             #元の形はpos_freq[b[0]] = pos_freq.get(b[0], 0) + 1
             #該当する品詞の出現数（デフォルト値０）に１を足す。
-        '''
-        for key in pos_freq:
-            key_freq = pos_freq[key]
-            key_rate = key_freq / self.total
-            print(key, ":", key_rate)
-            '''
+
         try:
             verb = pos_freq["動詞"]
         except KeyError:

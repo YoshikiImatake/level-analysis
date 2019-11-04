@@ -1,5 +1,5 @@
 #coding:utf-8
-import re
+import re, Pair
 
 
 class McbReader:
@@ -7,7 +7,13 @@ class McbReader:
         self.path = path
     
     def sentence_length(self):
-        f = open(self.path, 'r', encoding="utf-8")
+        '''
+        テキストファイル中に含まれる文の長さの平均値を返す
+        MeCabファイルの各行の長さを測るようになっている。早急に改善！
+        '''
+        p = Pair.Pair(self.path)
+        path = p.mcb2text()
+        f = open(path, 'r', encoding="utf-8")
         text = f.read()
         f.close()
         text_splitted = re.split('\n|。', text)
@@ -17,11 +23,19 @@ class McbReader:
             if len(sentence) != 0:
                 snum += 1
                 cnum += len(sentence)
-        mean_length = cnum / snum
+        try:
+            mean_length = cnum / snum
+        except ZeroDivisionError:
+            print(path)
+            mean_length = 0
         #print("文字数：{0} 文の数：{1} 1文中の平均字数：{2}".format(cnum, snum, mean_length))
         return mean_length
 
     def mcb_read(self):
+        '''
+        形態素解析されたファイルを受け取る
+        return: hyoso, kihon, hinshi, sai1, sai2, sai3, sentence, total（それぞれがリスト）
+        '''
         #pos_freq = {} #各品詞の出現数を記録する辞書
         sc = 0 #文の数を数えるカウンター．EOSで１増える.sentence counterの略
         linect = 0 #行数のカウンター,配列の添え字に使う

@@ -2,10 +2,10 @@ import os, sys, shutil, MeCab
 
 #AnacondaPromptで実行すること
 
-newdir_stu = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/mcb_text/student_mcb/'
-newdir_rev = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/mcb_text/reviewed_mcb/'
-dir_stu = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/student/'
-dir_rev = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/text/reviewed/'
+newdir_stu = 'mcb_text/student_mcb/'
+newdir_rev = 'mcb_text/reviewed_mcb/'
+dir_stu = 'text/student/'
+dir_rev = 'text/reviewed/'
 files_stu = os.listdir(dir_stu)
 files_rev = os.listdir(dir_rev)
 m = MeCab.Tagger ("-r C:\progra~2\MeCab\etc\mecabrc-u")

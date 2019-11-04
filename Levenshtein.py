@@ -34,12 +34,13 @@ def lds(s, t):
     return ld(s,t) / max(len(s), len(t))
 
 def main():
+    '''テスト用。一組のテキストファイルを対象に距離の測定を行う'''
     stxt = ''
-    with open('text/student/40239_stu.txt', mode='r', encoding='utf-8')as sfin:
+    with open('text/student/41394_stu.txt', mode='r', encoding='utf-8')as sfin:
         for srow in sfin:
             stxt += srow
     rtxt = ''
-    with open('text/reviewed/40239_rev.txt', mode='r', encoding='utf-8')as rfin:
+    with open('text/reviewed/41394_rev.txt', mode='r', encoding='utf-8')as rfin:
         for rrow in rfin:
             rtxt += rrow
     s = stxt.split("。")
@@ -47,27 +48,7 @@ def main():
     for (s, t) in zip(s, t):
         print(lds(s,t), '\n')
     #print("Levenshtein:",ld(stxt, rtxt))
-    """
-    一行ずつ
 
-    stxt = []
-    with open('text/student/20160408_stu.txt', mode='r', encoding='utf-8')as sfin:
-        for srow in sfin:
-            stxt.append(srow)
-
-    rtxt = []
-    with open('text/reviewed/20160408_rev.txt', mode='r', encoding='utf-8')as rfin:
-        for rrow in rfin:
-            rtxt.append(rrow)
-
-    #print(ld(stxt[0], rtxt[0]))
-
-    for (s, r) in zip(stxt, rtxt):
-        try:
-            print(ld(s,r), '\n')
-        except RecursionError:
-            print("Error\n")
-    """
 
 if __name__ == '__main__':
     main()

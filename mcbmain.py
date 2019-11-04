@@ -5,11 +5,12 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
-stu_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/mcb_text/student_mcb/'
-rev_dir = 'C:/Users/Yoshiki/OneDrive/translation-analysis-data/mcb_text/reviewed_mcb/'
+stu_dir = 'mcb_text/student_mcb/'
+rev_dir = 'mcb_text/reviewed_mcb/'
 X = list()
 
 def make_data(dirname):
+    '''機械学習用データの作成'''
     files = os.listdir(dirname)
     for file in files:
         #print('ファイル区切り')
