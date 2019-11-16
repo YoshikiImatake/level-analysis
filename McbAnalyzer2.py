@@ -132,3 +132,13 @@ class McbAnalyzer:
         rentai_rate = rentai_count / verb
         return rentai_rate
 
+    def no_repetition(self):
+        no_list = list()
+        num_no = 0
+        for word in self.hyoso:
+            if word == "の":
+                num_no += 1
+            if word == "。":
+                no_list.append(num_no)
+                num_no = 0
+        return max(no_list)

@@ -3,8 +3,8 @@ import os, McbReader, McbAnalyzer2
 
 stu_dir = 'mcb_text/student_mcb/'
 rev_dir = 'mcb_text/reviewed_mcb/'
-label = "title,noun rate,verb rate,adj rate,particle rate,conjunction rate,passive rate,rentai rate,kanji rate,mean length,standard deviation of length,type" + "\n"
-datafile = 'data/data3.csv'
+label = "title,noun rate,verb rate,adj rate,particle rate,conjunction rate,passive rate,rentai rate,kanji rate,mean length,standard deviation of length,no,type" + "\n"
+datafile = 'data/data4.csv'
 f = open(datafile, 'w')
 f.write(label)
 f.close()
@@ -40,7 +40,8 @@ def make_data(dirname):
         passive_rate = pr["passive_rate"]
         rentai = a1.rentai()
         kanji = a1.kanji_rate()
-        content = str(file) + ',' + str(noun_rate) + ',' + str(verb_rate) + ',' + str(adj_rate) + ',' + str(particle_rate) + ',' + str(conjunction_rate) + ',' + str(passive_rate) + ',' + str(rentai) + ',' + str(kanji) + ',' + str(mean_length) + ',' + str(stdev_length) + ',' + sr + '\n'
+        no = a1.no_repetition()
+        content = str(file) + ',' + str(noun_rate) + ',' + str(verb_rate) + ',' + str(adj_rate) + ',' + str(particle_rate) + ',' + str(conjunction_rate) + ',' + str(passive_rate) + ',' + str(rentai) + ',' + str(kanji) + ',' + str(mean_length) + ',' + str(stdev_length) + ',' + str(no) + ',' + sr + '\n'
         f.write(content)
     f.close()
 
