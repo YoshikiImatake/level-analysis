@@ -1,5 +1,6 @@
 #coding:utf-8
 import re, Pair
+from statistics import stdev
 
 
 class McbReader:
@@ -8,28 +9,30 @@ class McbReader:
     
     def sentence_length(self):
         '''
-        テキストファイル中に含まれる文の長さの平均値を返す
-        MeCabファイルの各行の長さを測るようになっている。早急に改善！
+        テキストファイル中に含まれる文の長さの[0]平均値[1]標準偏差を返す
         '''
         p = Pair.Pair(self.path)
         path = p.mcb2text()
         f = open(path, 'r', encoding="utf-8")
         text = f.read()
         f.close()
-        text_splitted = re.split('\n|。', text)
+        text_splitted = re.split('。', text)
         snum = 0 #文の数をかぞえる
-        cnum = 0 #文字数を数える
+        cnum = 0 #全文字数を数える
+        length_list = list()
         for sentence in text_splitted:
             if len(sentence) != 0:
                 snum += 1
                 cnum += len(sentence)
+                length_list.append(len(sentence))
         try:
             mean_length = cnum / snum
         except ZeroDivisionError:
             print(path)
             mean_length = 0
+        stdev_length = stdev(length_list)
         #print("文字数：{0} 文の数：{1} 1文中の平均字数：{2}".format(cnum, snum, mean_length))
-        return mean_length
+        return mean_length, stdev_length
 
     def mcb_read(self):
         '''
@@ -45,6 +48,7 @@ class McbReader:
         sai1 = list()
         sai2 = list()
         sai3 = list()
+        katsuyou = list()
         sentence = list()
         sentence.insert(sc, "")
         total = 0 #語数を数える
@@ -53,8 +57,9 @@ class McbReader:
             try:
                 
                 if "EOS" in row: #行の中に"EOS"が含まれる場合
-                    sc += 1
-                    sentence.insert(sc, "")
+                    #sc += 1
+                    #sentence.insert(sc, "")
+                    pass
                     
                 else:
                     a = row.split('\t')
@@ -68,12 +73,19 @@ class McbReader:
                     sai1.append(b[1])
                     sai2.append(b[2])
                     sai3.append(b[3])
+                    katsuyou.append(b[5])
                     sentence[sc] = sentence[sc] + hyoso[linect]
                     total += 1
                     linect += 1
+                    if a[0] == "。":
+                        sc += 1
+                        sentence.insert(sc, "")
             except EOFError:
                 break
+        
+        if sentence[sc] == '':
+            sentence.pop()
         f.close()
-        datalist = [hyoso, kihon, hinshi, sai1, sai2, sai3, sentence, total]
+        datalist = [hyoso, kihon, hinshi, sai1, sai2, sai3, katsuyou, sentence, total]
         return datalist
         
