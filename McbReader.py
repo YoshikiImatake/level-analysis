@@ -9,7 +9,7 @@ class McbReader:
     
     def sentence_length(self):
         '''
-        テキストファイル中に含まれる文の長さの[0]平均値[1]標準偏差を返す
+        テキストファイル中に含まれる文の長さの[0]平均値[1]標準偏差[2]変動係数を返す
         '''
         p = Pair.Pair(self.path)
         path = p.mcb2text()
@@ -31,8 +31,9 @@ class McbReader:
             print(path)
             mean_length = 0
         stdev_length = stdev(length_list)
+        cov_length = stdev_length / mean_length #変動係数
         #print("文字数：{0} 文の数：{1} 1文中の平均字数：{2}".format(cnum, snum, mean_length))
-        return mean_length, stdev_length
+        return mean_length, stdev_length, cov_length
 
     def mcb_read(self):
         '''
