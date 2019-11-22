@@ -142,3 +142,27 @@ class McbAnalyzer:
                 no_list.append(num_no)
                 num_no = 0
         return max(no_list)
+
+    def k_characteristic(self):
+        """
+        K特性値を計算する
+        """
+        worddict = dict()
+        f = dict()
+        for word in self.kihon:
+            worddict[word] = worddict.get(word, 0) + 1
+
+        for n in worddict.values():
+            f[n] = f.get(n, 0) + 1
+
+        s = 0
+        for n in f.keys():
+            s += n * f[n]
+
+        t = 0
+        for n in f.keys():
+            t += n**2 * f[n]
+
+        k = ((t - s) / s ** 2) * 10000
+        return k
+
