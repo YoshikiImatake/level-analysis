@@ -25,9 +25,9 @@ class SentenceAnalyzer:
         cov_length = stdev_length / mean_length #変動係数
         #print("文字数：{0} 文の数：{1} 1文中の平均字数：{2}".format(cnum, snum, mean_length))
         return mean_length, stdev_length, cov_length
-
+    '''
     #def ku_length(self):
-        '''
+        
         1文中の句の数の[0]中央値[1]最大値[2]分散
         句の長さの[3]中央値[4]最大値[5]分散
-        '''
+    '''

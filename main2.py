@@ -1,10 +1,10 @@
-import os, McbReader, McbAnalyzer2
+import os, McbReader, McbAnalyzer2, SentenceAnalyzer
 
 
 stu_dir = 'mcb_text/student_mcb/'
 rev_dir = 'mcb_text/reviewed_mcb/'
-label = "title,noun rate,verb rate,adj rate,particle rate,conjunction rate,passive rate,rentai rate,kanji rate,mean length,coefficient of variation of length,no,type" + "\n"
-datafile = 'data/data5.csv'
+label = "title,noun rate,verb rate,adj rate,particle rate,conjunction rate,passive rate,rentai rate,kanji rate,mean length,coefficient of variation of length,no,k,type" + "\n"
+datafile = 'data/data6k.csv'
 f = open(datafile, 'w')
 f.write(label)
 f.close()
@@ -25,7 +25,9 @@ def make_data(dirname):
         #print('ファイル区切り')
         path = dirname + file
         mcb = McbReader.McbReader(path)
-        l = mcb.sentence_length()
+        s = mcb.sentence()
+        s = SentenceAnalyzer.SentenceAnalyzer(s)
+        l = s.sentence_length()
         mean_length = l[0]
         cov_length = l[2]
         #print("1文中の平均字数", length)
@@ -41,7 +43,11 @@ def make_data(dirname):
         rentai = a1.rentai()
         kanji = a1.kanji_rate()
         no = a1.no_repetition()
-        content = str(file) + ',' + str(noun_rate) + ',' + str(verb_rate) + ',' + str(adj_rate) + ',' + str(particle_rate) + ',' + str(conjunction_rate) + ',' + str(passive_rate) + ',' + str(rentai) + ',' + str(kanji) + ',' + str(mean_length) + ',' + str(cov_length) + ',' + str(no) + ',' + sr + '\n'
+        k = a1.k_characteristic()
+        content = str(file) + ',' + str(noun_rate) + ',' + str(verb_rate) + ',' \
+            + str(adj_rate) + ',' + str(particle_rate) + ',' + str(conjunction_rate) + ',' \
+                + str(passive_rate) + ',' + str(rentai) + ',' + str(kanji) + ',' \
+                    + str(mean_length) + ',' + str(cov_length) + ',' + str(no) + ',' + str(k) + ',' + sr + '\n'
         f.write(content)
     f.close()
 

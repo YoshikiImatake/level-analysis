@@ -1,7 +1,5 @@
 import os, sys, shutil, MeCab
 
-#AnacondaPromptで実行すること
-
 newdir_stu = 'mcb_text/student_mcb/'
 newdir_rev = 'mcb_text/reviewed_mcb/'
 dir_stu = 'text/student/'
@@ -19,7 +17,7 @@ except FileNotFoundError:
 os.makedirs(newdir_stu)
 os.makedirs(newdir_rev)
 
-#studentディレクトリのMeCab化
+#studentディレクトリの形態素解析
 
 for filename_stu in files_stu:
     path = dir_stu + filename_stu
@@ -29,7 +27,7 @@ for filename_stu in files_stu:
             for row in file:
                 file_mcb.write(m.parse (row))
             
-#reviewedディレクトリのMeCab化
+#reviewedディレクトリの形態素解析
 for filename_rev in files_rev:
     path = dir_rev + filename_rev
     path_mcb = newdir_rev + filename_rev.replace('.txt', '_mcb.txt')

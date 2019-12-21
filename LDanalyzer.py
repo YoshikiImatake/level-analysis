@@ -30,13 +30,3 @@ for sfile in sfiles:
         f.write(title_result)
 
 f.close()
-
-    
-    
-    
-
-
-
-
-
-f.close()
